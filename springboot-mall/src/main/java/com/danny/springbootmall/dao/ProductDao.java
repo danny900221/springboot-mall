@@ -1,6 +1,6 @@
 package com.danny.springbootmall.dao;
 
-import com.danny.springbootmall.constant.ProductCategory;
+
 import com.danny.springbootmall.dto.ProductQueryParams;
 import com.danny.springbootmall.dto.ProductRequest;
 import com.danny.springbootmall.model.Product;
