@@ -1,16 +1,17 @@
-package com.danny.springbootmall.service;
+package com.danny.springbootmall.service.Impl;
 
 import com.danny.springbootmall.dao.ProductDao;
 import com.danny.springbootmall.dto.ProductQueryParams;
 import com.danny.springbootmall.dto.ProductRequest;
 import com.danny.springbootmall.model.Product;
+import com.danny.springbootmall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductDao productDao;
