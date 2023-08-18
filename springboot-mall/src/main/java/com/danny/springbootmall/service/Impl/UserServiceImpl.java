@@ -2,7 +2,7 @@ package com.danny.springbootmall.service.Impl;
 
 import com.danny.springbootmall.dao.UserDao;
 import com.danny.springbootmall.dto.UserLoginRequest;
-import com.danny.springbootmall.dto.UserRegiserRequest;
+import com.danny.springbootmall.dto.UserRegisterRequest;
 import com.danny.springbootmall.model.User;
 import com.danny.springbootmall.service.UserService;
 import org.slf4j.Logger;
@@ -27,18 +27,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer register(UserRegiserRequest userRegiserRequest) {
-        User user=userDao.getUserByEmail(userRegiserRequest.getEmail());
+    public Integer register(UserRegisterRequest userRegisterRequest) {
+        User user=userDao.getUserByEmail(userRegisterRequest.getEmail());
         //檢查註冊 email
         if(user!=null){
-            log.warn("該 email {} 已經被註冊",userRegiserRequest.getEmail());
+            log.warn("該 email {} 已經被註冊", userRegisterRequest.getEmail());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         //使用 MD5 生成密碼雜湊質
-        String hashedPassword= DigestUtils.md5DigestAsHex(userRegiserRequest.getPassword().getBytes());
-        userRegiserRequest.setPassword(hashedPassword);
+        String hashedPassword= DigestUtils.md5DigestAsHex(userRegisterRequest.getPassword().getBytes());
+        userRegisterRequest.setPassword(hashedPassword);
         // 創建帳號
-        return userDao.createUser(userRegiserRequest);
+        return userDao.createUser(userRegisterRequest);
     }
 
     @Override

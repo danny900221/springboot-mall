@@ -1,7 +1,7 @@
 package com.danny.springbootmall.controller;
 
 import com.danny.springbootmall.dto.UserLoginRequest;
-import com.danny.springbootmall.dto.UserRegiserRequest;
+import com.danny.springbootmall.dto.UserRegisterRequest;
 import com.danny.springbootmall.model.User;
 import com.danny.springbootmall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,8 @@ public class UserController {
     @Autowired
     private UserService userService;
     @PostMapping("/users/register")
-    public ResponseEntity<User> register(@RequestBody @Valid UserRegiserRequest userRegiserRequest){
-        Integer userId=userService.register(userRegiserRequest);
+    public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest){
+        Integer userId=userService.register(userRegisterRequest);
 
         User user=userService.getUserById(userId);
 

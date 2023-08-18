@@ -1,7 +1,7 @@
 package com.danny.springbootmall.dao.impl;
 
 import com.danny.springbootmall.dao.UserDao;
-import com.danny.springbootmall.dto.UserRegiserRequest;
+import com.danny.springbootmall.dto.UserRegisterRequest;
 import com.danny.springbootmall.model.User;
 import com.danny.springbootmall.rowmapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,14 +55,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Integer createUser(UserRegiserRequest userRegiserRequest) {
+    public Integer createUser(UserRegisterRequest userRegisterRequest) {
         String sql="INSERT INTO user(email,password,created_date,last_modified_date) " +
-                "Value (:email,:password,:createDate,:lastModifiedDate)";
+                "Values (:email,:password,:createDate,:lastModifiedDate)";
 
         Map<String ,Object> map=new HashMap<>();
 
-        map.put("email",userRegiserRequest.getEmail());
-        map.put("password",userRegiserRequest.getPassword());
+        map.put("email", userRegisterRequest.getEmail());
+        map.put("password", userRegisterRequest.getPassword());
 
         Date now= new Date();
         map.put("createDate",now);
