@@ -1,11 +1,32 @@
 package com.danny.springbootmall.model;
 
+import java.security.SecureRandom;
+
 public class OrderItem {
     private Integer orderItemId;
     private Integer orderId;
     private Integer productId;
     private Integer quantity;
     private Integer amount;
+
+    private String productName;
+    private String ImageUrl;
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getImageUrl() {
+        return ImageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        ImageUrl = imageUrl;
+    }
 
     public Integer getOrderItemId() {
         return orderItemId;

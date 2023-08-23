@@ -4,6 +4,7 @@ import com.danny.springbootmall.dao.OrderDao;
 import com.danny.springbootmall.dao.ProductDao;
 import com.danny.springbootmall.dto.BuyItem;
 import com.danny.springbootmall.dto.CreateOrderRequest;
+import com.danny.springbootmall.model.Order;
 import com.danny.springbootmall.model.OrderItem;
 import com.danny.springbootmall.model.Product;
 import com.danny.springbootmall.service.OrderService;
@@ -45,5 +46,17 @@ public class OrderServiceImpl implements OrderService {
        Integer orderId= orderDao.createOrder(userId,totalAmount);
        orderDao.createOrderItems(orderId,orderItemList);
        return orderId;
+    }
+
+    @Override
+    public Order getOrderById(Integer orderId) {
+        Order order=orderDao.getOrderById(orderId);
+
+        List<OrderItem> orderItemList=orderDao.getOrderItemsByOrderId(orderId);
+
+        order.setOrderItemList(orderItemList);
+
+        return order;
+
     }
 }
