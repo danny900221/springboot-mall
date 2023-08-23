@@ -1,4 +1,5 @@
 package com.danny.springbootmall.service.Impl;
+import com.danny.springbootmall.dto.OrderQueryParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.danny.springbootmall.dao.OrderDao;
@@ -29,6 +30,23 @@ public class OrderServiceImpl implements OrderService {
     private ProductDao productDao;
     @Autowired
     private UserDao userDao;
+
+    @Override
+    public List<Order> getOrders(OrderQueryParams orderQueryParams) {
+        List<Order> orderList=orderDao.getOrders(orderQueryParams);
+
+        for(Order order:orderList){
+            List<OrderItem> orderItemList=orderDao.getOrderItemsByOrderId(order.getOrderId());
+            order.setOrderItemList(orderItemList);
+        }
+        return orderList;
+    }
+
+    @Override
+    public Integer countOrder(OrderQueryParams orderQueryParams) {
+        return orderDao.countOrder(orderQueryParams);
+    }
+
     @Transactional
     @Override
     public Integer createOrder(Integer userId, CreateOrderRequest createOrderRequest) {
